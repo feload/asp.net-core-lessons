@@ -18,21 +18,13 @@ namespace asp.net_core_lessons
     {
         public static void Main(string[] args)
         {
-            var host = CreateWebHostBuilder(args);
-
-            // This allows us to populate the database with some fake data.
-            using (var newScope = host.Services.CreateScope())
-            {
-                var context = newScope.ServiceProvider.GetRequiredService<AppDbContext>();
-                DbInit.InitializeWithFakeData(context);
-            }
-
-            host.Run();
+            CreateWebHostBuilder(args)
+            .Build()
+            .Run();
         }
 
-        public static IWebHost CreateWebHostBuilder(string[] args) =>
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
+                .UseStartup<Startup>();
     }
 }
