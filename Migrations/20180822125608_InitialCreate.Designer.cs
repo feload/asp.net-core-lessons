@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using asp.net_core_lessons.Data;
+using ASPNetCoreLessons.Data;
 
 namespace asp.netcorelessons.Migrations
 {
@@ -20,7 +20,7 @@ namespace asp.netcorelessons.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("asp.net_core_lessons.Models.Contact", b =>
+            modelBuilder.Entity("ASPNetCoreLessons.Models.Contact", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -37,7 +37,7 @@ namespace asp.netcorelessons.Migrations
                     b.ToTable("Contacts");
                 });
 
-            modelBuilder.Entity("asp.net_core_lessons.Models.ToDo", b =>
+            modelBuilder.Entity("ASPNetCoreLessons.Models.ToDo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

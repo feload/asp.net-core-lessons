@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Extensions;
-using asp.net_core_lessons.Models;
+using ASPNetCoreLessons.Models;
 
-namespace asp.net_core_lessons.Data
+namespace ASPNetCoreLessons.Data
 {
   public class AppDbContext : DbContext
   {

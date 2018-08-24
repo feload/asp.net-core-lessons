@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using asp.net_core_lessons.Models;
+using ASPNetCoreLessons.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Extensions;
 
-namespace asp.net_core_lessons.Data
+namespace ASPNetCoreLessons.Data
 {
   public static class DbInit
   {

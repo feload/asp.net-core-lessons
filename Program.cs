@@ -9,10 +9,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Extensions;
-using asp.net_core_lessons.Data;
+using ASPNetCoreLessons.Data;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace asp.net_core_lessons
+namespace ASPNetCoreLessons
 {
     public class Program
     {
