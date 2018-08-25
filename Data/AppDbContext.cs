@@ -17,8 +17,11 @@ namespace ASPNetCoreLessons.Data
     public DbSet<ToDo> ToDos { get; set; }
     public DbSet<Book> Books { get; set; }
     public DbSet<Author> Authors { get; set; }
+    public DbSet<Client> Clients { get; set; }
+    public DbSet<Membership> Memberships { get; set; }
+    public DbSet<PersonalLibrary> PersonalLibraries { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder) 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
       // This is another approach to set a field properties through ASP net core fluent API.
       // Unlike data annotations, this approach is a bit more verbose.
@@ -32,6 +35,9 @@ namespace ASPNetCoreLessons.Data
 
       // This is how you define a compound key.
       modelBuilder.Entity<Author>().HasKey(a => new { a.FirstName, a.LastName });
+
+      // Client - Personal Library one-to-one relationship.
+      modelBuilder.Entity<Client>().HasOne(c => c.Library).WithOne(l => l.Client).HasForeignKey<PersonalLibrary>();
     }
   }
 }

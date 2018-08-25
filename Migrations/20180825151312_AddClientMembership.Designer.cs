@@ -4,14 +4,16 @@ using ASPNetCoreLessons.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace asp.netcorelessons.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180825151312_AddClientMembership")]
+    partial class AddClientMembership
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -139,24 +141,6 @@ namespace asp.netcorelessons.Migrations
                     b.ToTable("Memberships");
                 });
 
-            modelBuilder.Entity("ASPNetCoreLessons.Models.PersonalLibrary", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ClientId");
-
-                    b.Property<DateTime>("CreatedAt");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClientId")
-                        .IsUnique();
-
-                    b.ToTable("PersonalLibraries");
-                });
-
             modelBuilder.Entity("ASPNetCoreLessons.Models.ToDo", b =>
                 {
                     b.Property<int>("Id")
@@ -182,14 +166,6 @@ namespace asp.netcorelessons.Migrations
                     b.HasOne("ASPNetCoreLessons.Models.Client", "Client")
                         .WithOne("Membership")
                         .HasForeignKey("ASPNetCoreLessons.Models.Membership", "ClientId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("ASPNetCoreLessons.Models.PersonalLibrary", b =>
-                {
-                    b.HasOne("ASPNetCoreLessons.Models.Client", "Client")
-                        .WithOne("Library")
-                        .HasForeignKey("ASPNetCoreLessons.Models.PersonalLibrary", "ClientId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
