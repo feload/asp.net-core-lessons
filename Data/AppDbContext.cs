@@ -16,12 +16,16 @@ namespace ASPNetCoreLessons.Data
     public DbSet<Contact> Contacts { get; set; }
     public DbSet<ToDo> ToDos { get; set; }
     public DbSet<Book> Books { get; set; }
+    public DbSet<Author> Authors { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder ModelBuilder) 
+    protected override void OnModelCreating(ModelBuilder modelBuilder) 
     {
       // This is another approach to set a field properties through ASP net core fluent API.
       // Unlike data annotations, this approach is a bit more verbose.
-      ModelBuilder.Entity<Book>().Property(b => b.Isbn).HasMaxLength(10);
+      modelBuilder.Entity<Book>().Property(b => b.Isbn).HasMaxLength(10);
+
+      // This is how you define a compound key.
+      modelBuilder.Entity<Author>().HasKey(a => new { a.FirstName, a.LastName });
     }
   }
 }
