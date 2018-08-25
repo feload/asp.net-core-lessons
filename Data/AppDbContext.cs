@@ -15,5 +15,13 @@ namespace ASPNetCoreLessons.Data
     }
     public DbSet<Contact> Contacts { get; set; }
     public DbSet<ToDo> ToDos { get; set; }
+    public DbSet<Book> Books { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder ModelBuilder) 
+    {
+      // This is another approach to set a field properties through ASP net core fluent API.
+      // Unlike data annotations, this approach is a bit more verbose.
+      ModelBuilder.Entity<Book>().Property(b => b.Isbn).HasMaxLength(10);
+    }
   }
 }
