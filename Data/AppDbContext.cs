@@ -27,6 +27,9 @@ namespace ASPNetCoreLessons.Data
       // Define unique fields.
       modelBuilder.Entity<Book>().HasIndex(b => b.Isbn).HasName("UniqueIsbn").IsUnique();
 
+      modelBuilder.Entity<Book>().Ignore(b => b.FullTitle);
+      modelBuilder.Entity<Book>().Property(b => b.CreatedAt).HasDefaultValueSql("getdate()");
+
       // This is how you define a compound key.
       modelBuilder.Entity<Author>().HasKey(a => new { a.FirstName, a.LastName });
     }

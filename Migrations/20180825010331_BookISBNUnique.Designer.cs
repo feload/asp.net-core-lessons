@@ -4,14 +4,16 @@ using ASPNetCoreLessons.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace asp.netcorelessons.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180825010331_BookISBNUnique")]
+    partial class BookISBNUnique
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,8 +28,6 @@ namespace asp.netcorelessons.Migrations
                     b.Property<string>("LastName");
 
                     b.Property<DateTime>("DateOfBirth");
-
-                    b.Property<string>("MiddleName");
 
                     b.Property<string>("Nationality");
 
@@ -44,10 +44,6 @@ namespace asp.netcorelessons.Migrations
 
                     b.Property<string>("Author")
                         .IsRequired();
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("getdate()");
 
                     b.Property<string>("Isbn")
                         .IsRequired()
