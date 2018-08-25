@@ -17,8 +17,8 @@ namespace ASPNetCoreLessons.Models
     [MaxLength(32)]
     public string Title { get; set; }
 
-    [Required]
-    public string Author { get; set; }
+    public Author Author { get; set; }
+    public int AuthorId { get; set; }
 
     [Required]
     public string Isbn { get; set; }
@@ -26,7 +26,7 @@ namespace ASPNetCoreLessons.Models
     {
       get
       {
-        return $"{Author}'s {Title}";
+        return $"{Author.FullName}'s {Title}";
       }
     }
 
@@ -38,5 +38,6 @@ namespace ASPNetCoreLessons.Models
     */
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public DateTime CreatedAt { get; set; }
+
   }
 }

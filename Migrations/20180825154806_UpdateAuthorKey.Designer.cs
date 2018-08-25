@@ -4,14 +4,16 @@ using ASPNetCoreLessons.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace asp.netcorelessons.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180825154806_UpdateAuthorKey")]
+    partial class UpdateAuthorKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,7 +48,8 @@ namespace asp.netcorelessons.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AuthorId");
+                    b.Property<string>("Author")
+                        .IsRequired();
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
@@ -61,8 +64,6 @@ namespace asp.netcorelessons.Migrations
                         .HasMaxLength(32);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
 
                     b.HasIndex("Isbn")
                         .IsUnique()
@@ -180,14 +181,6 @@ namespace asp.netcorelessons.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ToDos");
-                });
-
-            modelBuilder.Entity("ASPNetCoreLessons.Models.Book", b =>
-                {
-                    b.HasOne("ASPNetCoreLessons.Models.Author", "Author")
-                        .WithMany("Books")
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("ASPNetCoreLessons.Models.Membership", b =>
