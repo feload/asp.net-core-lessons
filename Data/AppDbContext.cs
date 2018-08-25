@@ -24,6 +24,9 @@ namespace ASPNetCoreLessons.Data
       // Unlike data annotations, this approach is a bit more verbose.
       modelBuilder.Entity<Book>().Property(b => b.Isbn).HasMaxLength(10);
 
+      // Define unique fields.
+      modelBuilder.Entity<Book>().HasIndex(b => b.Isbn).HasName("UniqueIsbn").IsUnique();
+
       // This is how you define a compound key.
       modelBuilder.Entity<Author>().HasKey(a => new { a.FirstName, a.LastName });
     }
