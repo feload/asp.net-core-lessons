@@ -39,5 +39,7 @@ namespace ASPNetCoreLessons.Models
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public DateTime CreatedAt { get; set; }
 
+    public List<PersonalLibraryBook> PersonalLibraryBooks { get; set; }
+
   }
 }

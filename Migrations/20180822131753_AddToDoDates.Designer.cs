@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ASPNetCoreLessons.Data;
 
-namespace asp.netcorelessons.Migrations
+namespace ASPNetCoreLessons.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20180822131753_AddToDoDates")]

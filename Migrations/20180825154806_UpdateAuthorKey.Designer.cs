@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace asp.netcorelessons.Migrations
+namespace ASPNetCoreLessons.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20180825154806_UpdateAuthorKey")]

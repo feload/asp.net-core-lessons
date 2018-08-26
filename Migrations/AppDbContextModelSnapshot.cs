@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace asp.netcorelessons.Migrations
+namespace ASPNetCoreLessons.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
@@ -38,6 +38,19 @@ namespace asp.netcorelessons.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Authors");
+                });
+
+            modelBuilder.Entity("ASPNetCoreLessons.Models.Blog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Url");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Blogs");
                 });
 
             modelBuilder.Entity("ASPNetCoreLessons.Models.Book", b =>
@@ -162,6 +175,38 @@ namespace asp.netcorelessons.Migrations
                     b.ToTable("PersonalLibraries");
                 });
 
+            modelBuilder.Entity("ASPNetCoreLessons.Models.PersonalLibraryBook", b =>
+                {
+                    b.Property<int>("BookId");
+
+                    b.Property<int>("LibraryId");
+
+                    b.HasKey("BookId", "LibraryId");
+
+                    b.HasIndex("LibraryId");
+
+                    b.ToTable("PersonalLibraryBooks");
+                });
+
+            modelBuilder.Entity("ASPNetCoreLessons.Models.Post", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BlogId");
+
+                    b.Property<string>("Content");
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BlogId");
+
+                    b.ToTable("Posts");
+                });
+
             modelBuilder.Entity("ASPNetCoreLessons.Models.ToDo", b =>
                 {
                     b.Property<int>("Id")
@@ -203,6 +248,27 @@ namespace asp.netcorelessons.Migrations
                     b.HasOne("ASPNetCoreLessons.Models.Client", "Client")
                         .WithOne("Library")
                         .HasForeignKey("ASPNetCoreLessons.Models.PersonalLibrary", "ClientId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("ASPNetCoreLessons.Models.PersonalLibraryBook", b =>
+                {
+                    b.HasOne("ASPNetCoreLessons.Models.Book", "Book")
+                        .WithMany("PersonalLibraryBooks")
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ASPNetCoreLessons.Models.PersonalLibrary", "PersonalLibrary")
+                        .WithMany("PersonalLibraryBooks")
+                        .HasForeignKey("LibraryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("ASPNetCoreLessons.Models.Post", b =>
+                {
+                    b.HasOne("ASPNetCoreLessons.Models.Blog", "Blog")
+                        .WithMany("Posts")
+                        .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

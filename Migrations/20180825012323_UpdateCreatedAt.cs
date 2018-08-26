@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace asp.netcorelessons.Migrations
+namespace ASPNetCoreLessons.Migrations
 {
     public partial class UpdateCreatedAt : Migration
     {

@@ -2,7 +2,7 @@
 
 namespace ASPNetCoreLessons.Migrations
 {
-    public partial class UpdateBookIdAuthor : Migration
+    public partial class AuthorBookOneToMany : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -20,6 +20,9 @@ namespace ASPNetCoreLessons.Data
     public DbSet<Client> Clients { get; set; }
     public DbSet<Membership> Memberships { get; set; }
     public DbSet<PersonalLibrary> PersonalLibraries { get; set; }
+    public DbSet<PersonalLibraryBook> PersonalLibraryBooks { get; set; }
+    public DbSet<Post> Posts { get; set; }
+    public DbSet<Blog> Blogs { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -48,6 +51,12 @@ namespace ASPNetCoreLessons.Data
         .Property(b => b.CreatedAt)
         .HasDefaultValueSql("getdate()");
 
+      modelBuilder
+        .Entity<Book>()
+        .HasOne(b => b.Author)
+        .WithMany(a => a.Books)
+        .HasForeignKey(b => b.AuthorId);
+
       // This is how you define a compound key.
       // modelBuilder.Entity<Author>().HasKey(a => new { a.FirstName, a.LastName });
 
@@ -57,6 +66,25 @@ namespace ASPNetCoreLessons.Data
         .HasOne(c => c.Library)
         .WithOne(l => l.Client)
         .HasForeignKey<PersonalLibrary>();
+
+      // It's important to know that many-to-many relationships can only be done with fluent API.
+      modelBuilder
+        .Entity<PersonalLibraryBook>()
+        .HasKey(pl => new { pl.BookId, pl.LibraryId });
+
+      // Book - PersonalLibrary many-to-many relationship.
+      modelBuilder
+        .Entity<PersonalLibraryBook>()
+        .HasOne(pl => pl.Book)
+        .WithMany(b => b.PersonalLibraryBooks)
+        .HasForeignKey(pl => pl.BookId);
+
+      modelBuilder
+        .Entity<PersonalLibraryBook>()
+        .HasOne(pl => pl.PersonalLibrary)
+        .WithMany(l => l.PersonalLibraryBooks)
+        .HasForeignKey(pl => pl.LibraryId);
+
     }
   }
 }
